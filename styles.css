@@ -1,22 +1,31 @@
-
+@font-face {
+    font-family: "Vessel Sketch";
+    src: url("fonts/KGBrokenVesselsSketch.ttf");
+}
 
 body {
     margin: 0;
     padding: 0;
     color: #fff;
     background: #000;
+    overflow-y: hidden;
 }
 
 .wrapper {
     position: absolute;
-    top: 15%;
+    top: 5%;
     left: 50%;
+    margin-left: -300px;
 }
 
+.feedback {
+    height: 100px;
+    text-align: center;
+}
 
 .feedback__message {
     margin: 0;
-    font-size: 2.9em;
+    font-size: 2.6em;
 }
 
 .grid {
@@ -32,6 +41,19 @@ body {
 }
 
 .square {
+    height: 100%;
     background: #000;
+    cursor: pointer;
     font-size: 10em;
+    font-family: "Vessel Sketch", cursive, serif;
+}
+
+/* red for O */
+.red-marker {
+    color: #ff8987;
+}
+
+/* blue for X */
+.blue-marker {
+    color: #b2dcff;
 }
