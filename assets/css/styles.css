@@ -28,6 +28,22 @@ body {
     font-size: 2.6em;
 }
 
+.status__buttons-box {
+    display: flex;
+    justify-content: space-around;
+}
+
+.status__buttons {
+    font-size: 1.8em;
+    width: 225px;
+    height: 60px;
+}
+
+.status__buttons:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
 .grid {
     display: grid;
     margin: 2em auto 2em;
@@ -77,14 +93,23 @@ body {
     padding: 0;
     margin: 0;
     font-size: 2.8em;
+
 }
 
 .blink {
-    animation: blink-animation 0.5s steps(1, start) 4;
+    animation: blink-animation 0.5s step-end 4;
 }
 
 @keyframes  blink-animation {
     50% {
         font-size: 0;
     }
+}
+
+.hidden {
+    display: none;
+}
+
+.opaque {
+    opacity: 0.4;
 }
