@@ -57,3 +57,24 @@ body {
 .blue-marker {
     color: #b2dcff;
 }
+
+.stats {
+    display: grid;
+    margin: 0 auto;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.player {
+    text-align: center;
+}
+
+.player__name {
+    margin:0.8em 0 0.4em;
+    font-size: 2.2em;
+}
+
+.player__score {
+    padding: 0;
+    margin: 0;
+    font-size: 2.8em;
+}
