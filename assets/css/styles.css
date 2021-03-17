@@ -18,12 +18,12 @@ body {
     margin-left: -300px;
 }
 
-.feedback {
+.status {
     height: 100px;
     text-align: center;
 }
 
-.feedback__message {
+.status__message {
     margin: 0;
     font-size: 2.6em;
 }
@@ -77,4 +77,14 @@ body {
     padding: 0;
     margin: 0;
     font-size: 2.8em;
+}
+
+.blink {
+    animation: blink-animation 0.5s steps(1, start) 4;
+}
+
+@keyframes  blink-animation {
+    50% {
+        font-size: 0;
+    }
 }
