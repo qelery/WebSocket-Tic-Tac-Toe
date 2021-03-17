@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Title</title>
+    <title>Tic Tac Toe</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-<div class="wrapper">
-    <div class="status">
-        <p class="status__message hidden"></p>
-        <div class="status__buttons-box">
-            <button id="left-button" class="status__buttons">Single Player</button>
-            <button id="right-button" class="status__buttons">Two Player</button>
+    <div class="wrapper">
+        <div class="feedback">
+            <p class="feedback_message hidden"></p>
+            <div class="feedback_buttons-box">
+                <button id="left-button" class="feedback_buttons">Single Player</button>
+                <button id="right-button" class="feedback_buttons">Two Player</button>
+            </div>
+        </div>
+        <div class="grid opaque">
+            <div class="square blue-marker" data-x="0" data-y="0" data-clicked="false">O</div>
+            <div class="square blue-marker" data-x="1" data-y="0" data-clicked="false">O</div>
+            <div class="square red-marker" data-x="2" data-y="0" data-clicked="false">X</div>
+            <div class="square red-marker" data-x="0" data-y="1" data-clicked="false">X</div>
+            <div class="square blue-marker" data-x="1" data-y="1" data-clicked="false">O</div>
+            <div class="square red-marker" data-x="2" data-y="1" data-clicked="false">X</div>
+            <div class="square red-marker" data-x="0" data-y="2" data-clicked="false">X</div>
+            <div class="square blue-marker" data-x="1" data-y="2" data-clicked="false">O</div>
+            <div class="square blue-marker" data-x="2" data-y="2" data-clicked="false">O</div>
+        </div>
+        <div class="stats opaque">
+            <div id="playerX" class="player">
+                <p class="player__name">Player X</p>
+                <p class="player__score">0</p>
+            </div>
+            <div id="tie" class="player">
+                <p class="player__name">Tie</p>
+                <p class="player__score">0</p>
+            </div>
+            <div id="playerO" class="player">
+                <p class="player__name">Player O</p>
+                <p class="player__score">0</p>
+            </div>
         </div>
     </div>
-    <div class="grid opaque">
-        <div class="square blue-marker" data-x="0" data-y="0" data-clicked="false">O</div>
-        <div class="square blue-marker" data-x="1" data-y="0" data-clicked="false">O</div>
-        <div class="square red-marker" data-x="2" data-y="0" data-clicked="false">X</div>
-        <div class="square red-marker" data-x="0" data-y="1" data-clicked="false">X</div>
-        <div class="square blue-marker" data-x="1" data-y="1" data-clicked="false">O</div>
-        <div class="square red-marker" data-x="2" data-y="1" data-clicked="false">X</div>
-        <div class="square red-marker" data-x="0" data-y="2" data-clicked="false">X</div>
-        <div class="square blue-marker" data-x="1" data-y="2" data-clicked="false">O</div>
-        <div class="square blue-marker" data-x="2" data-y="2" data-clicked="false">O</div>
-    </div>
-    <div class="stats opaque">
-        <div id="player1" class="player">
-            <p class="player__name">Player X</p>
-            <p class="player__score">0</p>
-        </div>
-        <div id="tie" class="player">
-            <p class="player__name">Tie</p>
-            <p class="player__score">0</p>
-        </div>
-        <div id="player2" class="player">
-            <p class="player__name">Player O</p>
-            <p class="player__score">0</p>
-        </div>
-    </div>
-</div>
-<script src="assets/js/main.js"></script>
-<script src="assets/js/recordkeeper.js"></script>
-<script src="assets/js/grid.js"></script>
+    <script src="assets/js/model.js"></script>
+    <script src="assets/js/view.js"></script>
+    <script src="assets/js/controller.js"></script>
 </body>
 </html>

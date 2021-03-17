@@ -18,28 +18,28 @@ body {
     margin-left: -300px;
 }
 
-.status {
+.feedback {
     height: 100px;
     text-align: center;
 }
 
-.status__message {
+.feedback_message {
     margin: 0;
     font-size: 2.6em;
 }
 
-.status__buttons-box {
+.feedback_buttons-box {
     display: flex;
     justify-content: space-around;
 }
 
-.status__buttons {
+.feedback_buttons {
     font-size: 1.8em;
     width: 225px;
     height: 60px;
 }
 
-.status__buttons:hover {
+.feedback_buttons:hover {
     transform: scale(1.1);
     cursor: pointer;
 }
