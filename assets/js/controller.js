@@ -17,14 +17,14 @@ class Controller {
     }
 
     _setUpGame = (event) => {
-        console.log("In _setUpGame...");
+        console.log("In _setUpGame");
         this.isTwoPlayer = event.target === document.querySelector('#right-button');
 
         this.ui.reset();
     }
 
     _mainLoop = async (event) => {
-        console.log("\nIn _mainLoop...")
+        console.log("\nIn _mainLoop")
 
         if (this.gameOver) return;
 
@@ -33,15 +33,15 @@ class Controller {
         if (wasPlaced) {
             let marker = this.grid.activeMarker;
             this.ui.markSquareDiv(event.target, marker);
-            this.grid.switchMarker();
 
             let [roundDone, winningPositions] = this.grid.checkRoundDone();
 
             if (roundDone) {
-                await this.ui.handleWin(winningPositions, marker);
+                await this.ui.handleRoundOver(marker, winningPositions);
                 this.grid.reset();
                 this.ui.reset();
             }
+            this.grid.switchMarker();
         }
     }
 }
@@ -50,24 +50,3 @@ class Controller {
 console.clear();
 
 const controller = new Controller();
-
-
-//
-// singlePlayerButton.addEventListener('click', singlePlayerSetup);
-// twoPlayerButton.addEventListener('click', twoPlayerSetup);
-
-
-// function singlePlayerSetup() {
-//     isTwoPlayer = false;
-//
-//     gridDiv.classList.remove('opaque');
-//     statsDiv.classList.remove('opaque');
-//
-//     grid = new Grid([...squaresDivs]);
-//     grid.reset();
-// }
-//
-// function twoPlayerSetup() {
-//     isTwoPlayer = true;
-// }
-
