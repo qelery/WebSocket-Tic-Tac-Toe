@@ -34,13 +34,13 @@ body {
     width: 100%;
 }
 
-.feedback_buttons {
+.feedback_button {
     font-size: 1.8em;
     width: 225px;
     height: 60px;
 }
 
-.feedback_buttons:hover {
+.feedback_button:hover {
     transform: scale(1.1);
     cursor: pointer;
 }
