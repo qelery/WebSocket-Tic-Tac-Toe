@@ -25,7 +25,6 @@ class Grid {
     }
 
     placeMarker(square) {
-        if (square.dataset.clicked === 'true') return false;
 
         this.totalPlacements++;
 

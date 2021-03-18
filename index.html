@@ -4,8 +4,9 @@
     <title>Tic Tac Toe</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="assets/css/animations.css">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 <div class="wrapper">
@@ -17,34 +18,15 @@
         </div>
     </div>
     <div class="grid opaque">
-        <div class="square blue-marker" data-x="0" data-y="0" data-clicked="true"><span class="shake-1">O</span></div>
-        <div class="square blue-marker" data-x="1" data-y="0" data-clicked="true"><span class="drop-1">O</span></div>
-        <div class="square red-marker" data-x="2" data-y="0" data-clicked="true"><span>X</span></div>
-        <div class="square red-marker" data-x="0" data-y="1" data-clicked="true"><span>X</span></div>
-        <div class="square blue-marker" data-x="1" data-y="1" data-clicked="true"><span>O</span></div>
-        <div class="square red-marker" data-x="2" data-y="1" data-clicked="true"><span>X</span></div>
-        <div class="square red-marker" data-x="0" data-y="2" data-clicked="true"><span>X</span></div>
-        <div class="square blue-marker" data-x="1" data-y="2" data-clicked="true"><span>O</span></div>
-        <div class="square blue-marker" data-x="2" data-y="2" data-clicked="true"><span>O</span></div>
-        <!--            <div class="square blue-marker" data-x="0" data-y="0" data-clicked="true"><span class="shake-1">O</span></div>-->
-        <!--            <div class="square blue-marker" data-x="1" data-y="0" data-clicked="true"><span class="shake-2">O</span></div>-->
-        <!--            <div class="square red-marker" data-x="2" data-y="0" data-clicked="true"><span class="shake-5">X</span></div>-->
-        <!--            <div class="square red-marker" data-x="0" data-y="1" data-clicked="true"><span class="shake-3">X</span></div>-->
-        <!--            <div class="square blue-marker" data-x="1" data-y="1" data-clicked="true"><span class="shake-1">O</span></div>-->
-        <!--            <div class="square red-marker" data-x="2" data-y="1" data-clicked="true"><span class="shake-4">X</span></div>-->
-        <!--            <div class="square red-marker" data-x="0" data-y="2" data-clicked="true"><span class="shake-3">X</span></div>-->
-        <!--            <div class="square blue-marker" data-x="1" data-y="2" data-clicked="true"><span class="shake-5">O</span></div>-->
-        <!--            <div class="square blue-marker" data-x="2" data-y="2" data-clicked="true"><span class="shake-4">O</span></div>-->
-
-        <!--            <div class="square blue-marker" data-x="0" data-y="0" data-clicked="true"><span class="drop-1">O</span></div>-->
-        <!--            <div class="square blue-marker" data-x="1" data-y="0" data-clicked="true"><span class="drop-2">O</span></div>-->
-        <!--            <div class="square red-marker" data-x="2" data-y="0" data-clicked="true"><span class="drop-5">X</span></div>-->
-        <!--            <div class="square red-marker" data-x="0" data-y="1" data-clicked="true"><span class="drop-3">X</span></div>-->
-        <!--            <div class="square blue-marker" data-x="1" data-y="1" data-clicked="true"><span class="drop-1">O</span></div>-->
-        <!--            <div class="square red-marker" data-x="2" data-y="1" data-clicked="true"><span class="drop-4">X</span></div>-->
-        <!--            <div class="square red-marker" data-x="0" data-y="2" data-clicked="true"><span class="drop-3">X</span></div>-->
-        <!--            <div class="square blue-marker" data-x="1" data-y="2" data-clicked="true"><span class="drop-5">O</span></div>-->
-        <!--            <div class="square blue-marker" data-x="2" data-y="2" data-clicked="true"><span class="drop-4">O</span></div>-->
+        <div class="square disabled blue-marker" data-x="0" data-y="0"><span>O</span></div>
+        <div class="square disabled blue-marker" data-x="1" data-y="0"><span >O</span></div>
+        <div class="square disabled red-marker" data-x="2" data-y="0"><span>X</span></div>
+        <div class="square disabled red-marker" data-x="0" data-y="1"><span>X</span></div>
+        <div class="square disabled blue-marker" data-x="1" data-y="1"><span>O</span></div>
+        <div class="square disabled red-marker" data-x="2" data-y="1"><span>X</span></div>
+        <div class="square disabled red-marker" data-x="0" data-y="2"><span>X</span></div>
+        <div class="square disabled blue-marker" data-x="1" data-y="2"><span>O</span></div>
+        <div class="square disabled blue-marker" data-x="2" data-y="2"><span>O</span></div>
     </div>
     <div class="stats opaque">
         <div id="playerX" class="player">
@@ -61,8 +43,8 @@
         </div>
     </div>
 </div>
-<script src="assets/js/model.js"></script>
-<script src="assets/js/view.js"></script>
-<script src="assets/js/controller.js"></script>
+<script src="js/model.js"></script>
+<script src="js/view.js"></script>
+<script src="js/controller.js"></script>
 </body>
 </html>

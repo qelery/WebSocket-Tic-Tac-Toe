@@ -20,14 +20,13 @@ class UserInterface {
         this.oScore = null;
         this.tieScore = null;
         this.message = null;
-        this.leftButton = null;
-        this.rightButton = null;
+        this.buttonsDiv = null;
         this.init();
     }
 
     handleMarkedSquare(square, marker) {
-        square.innerText = marker;
-        square.setAttribute('data-clicked', 'true');
+        square.firstChild.innerText = marker;
+        square.classList.add('disabled');
         square.classList.add(marker === 'X' ? 'red-marker' : 'blue-marker');
     }
 
@@ -36,15 +35,16 @@ class UserInterface {
     }
 
     async handleRoundDone(winningMarker, winningPositions) {
-        this._disableClicks();
+        this._disableAllClicks();
         if (winningPositions) {
             this._alertMessage(`Player ${winningMarker} won!`);
             this._updateScore(winningMarker);
-            await this._blinkPositions(winningPositions);
+            await blinkAnimation(winningPositions);
         } else {
             this._alertMessage(`Tie!`)
             this._updateScore('tie');
-            await this._blinkPositions();
+            this.gridDiv.classList.add('opaque');
+            await fallAnimation(this.squareDivs);
         }
     }
 
@@ -71,19 +71,18 @@ class UserInterface {
     s
     _clearSquares() {
         this.squareDivs.forEach(square => {
-            square.classList.remove('red-marker', 'blue-marker', 'blink');
-            square.dataset.clicked = 'false';
-            square.innerText = '';
+            square.classList.remove('red-marker', 'blue-marker', 'disabled');
+            square.firstChild.remove();
+            square.append(document.createElement('span'));
         })
     }
 
-    _disableClicks() {
-        this.squareDivs.forEach(square => square.dataset.clicked = 'true');
+    _disableAllClicks() {
+        this.squareDivs.forEach(square => square.classList.add('disabled'));
     }
 
     _hideButtons() {
-        this.leftButton.classList.add('hidden');
-        this.rightButton.classList.add('hidden');
+        this.buttonsDiv.classList.add('hidden');
     }
 
     _unhideMessage() {
@@ -95,17 +94,6 @@ class UserInterface {
         this.gridDiv.classList.remove('opaque');
     }
 
-    async _blinkPositions(positions) {
-        let squares;
-        if (positions) {
-            squares = positions.map(p => document.querySelector(`[data-x="${p[0]}"][data-y="${p[1]}"]`))
-        } else {
-            squares = this.squareDivs;
-        }
-
-        await blink(squares);
-    }
-
     init() {
         this.gridDiv = document.querySelector('.grid');
         this.squareDivs = Array.from(this.gridDiv.children);
@@ -114,16 +102,39 @@ class UserInterface {
         this.oScore = document.querySelector('#playerO .player__score');
         this.tieScore = document.querySelector('#tie .player__score');
         this.message = document.querySelector('.feedback_message');
-        this.leftButton = document.querySelector('#left-button');
-        this.rightButton = document.querySelector('#right-button');
+        this.buttonsDiv = document.querySelector('.feedback_buttons-box');
     }
 }
 
-async function blink(squaresToBlink) {
-    squaresToBlink.forEach(square => square.classList.add('blink'));
+async function blinkAnimation(positions) {
+    let squaresToBlink;
+    if (positions) {
+        squaresToBlink = positions.map(p => document.querySelector(`[data-x="${p[0]}"][data-y="${p[1]}"]`))
+    } else {
+        squaresToBlink = this.squareDivs;
+    }
+    squaresToBlink.forEach(square => square.firstChild.classList.add('blink'));
     await sleep(4500);
+}
+
+async function fallAnimation(squaresToDrop) {
+    let numOfAnimations = 5;
+    squaresToDrop.forEach(square => {
+        let n = randomInt(1, numOfAnimations);
+        square.firstChild.classList.add(`shake-${n}`);
+    });
+    await sleep(1000);
+    squaresToDrop.forEach(square => {
+        let n = randomInt(1, numOfAnimations);
+        square.firstChild.classList.add(`drop-${n}`);
+    });
+    await sleep(2000);
 }
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function randomInt(start, end) {
+    return Math.floor(Math.random() * end) + start;
 }

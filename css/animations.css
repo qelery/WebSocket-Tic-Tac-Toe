@@ -5,33 +5,28 @@
 
 @keyframes  blink-animation {
     50% {
-        font-size: 0;
+        visibility: hidden;
     }
 }
 
 /* Shake animations last approx 1.5 sec */
 .shake-1 {
-    display: inline-block;
     animation: shake-animation-1 0.07s 21;
 }
 
 .shake-2 {
-    display: inline-block;
     animation: shake-animation-2 0.075s 20;
 }
 
 .shake-3 {
-    display: inline-block;
     animation: shake-animation-3 0.08s 19;
 }
 
 .shake-4 {
-    display: inline-block;
     animation: shake-animation-4 0.07s 21;
 }
 
 .shake-5 {
-    display: inline-block;
     animation: shake-animation-4 0.075s 20;
 }
 
@@ -96,27 +91,22 @@
 }
 
 .drop-1 {
-    display: inline-block;
     animation: drop-animation-1 0.9s forwards;
 }
 
 .drop-2 {
-    display: inline-block;
     animation: drop-animation-1 0.95s forwards;
 }
 
 .drop-3 {
-    display: inline-block;
     animation: drop-animation-1 1s forwards;
 }
 
 .drop-4 {
-    display: inline-block;
     animation: drop-animation-1 1.05s forwards;
 }
 
 .drop-5 {
-    display: inline-block;
     animation: drop-animation-1 1.1s forwards;
 }
 

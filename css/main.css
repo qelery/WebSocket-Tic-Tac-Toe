@@ -12,13 +12,13 @@ body {
 }
 
 .wrapper {
-    position: absolute;
-    top: 5%;
-    left: 50%;
-    margin-left: -300px;
+    margin: 4em auto;
+    width: 600px;
 }
 
 .feedback {
+    display: flex;
+    justify-content: center;
     height: 100px;
     text-align: center;
 }
@@ -31,6 +31,7 @@ body {
 .feedback_buttons-box {
     display: flex;
     justify-content: space-around;
+    width: 100%;
 }
 
 .feedback_buttons {
@@ -64,6 +65,10 @@ body {
     font-family: "Vessel Sketch", cursive, serif;
 }
 
+.square span {
+    display: inline-block;
+}
+
 /* red for O */
 .red-marker {
     color: #ff8987;
@@ -75,9 +80,9 @@ body {
 }
 
 .stats {
-    display: grid;
-    margin: 0 auto;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2.4em;
 }
 
 .player {
@@ -102,4 +107,8 @@ body {
 
 .opaque {
     opacity: 0.4;
+}
+
+.disabled {
+    pointer-events: none;
 }
