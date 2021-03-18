@@ -45,7 +45,6 @@ body {
     cursor: pointer;
 }
 
-
 .grid {
     display: flex;
     flex-wrap: wrap;
@@ -59,7 +58,6 @@ body {
 .square {
     height: 200px;
     width: 200px;
-    background: #000;
     cursor: pointer;
     font-size: 10em;
     box-sizing: border-box;
@@ -67,11 +65,11 @@ body {
 }
 
 .square[data-y="0"], .square[data-y="1"] {
-    border-bottom: 4px solid #fff;
+    border-bottom: 4px solid #dbdbdb;
 }
 
 .square[data-x="0"], .square[data-x="1"] {
-    border-right: 4px solid #fff;
+    border-right: 4px solid #dbdbdb;
 }
 
 .square span {

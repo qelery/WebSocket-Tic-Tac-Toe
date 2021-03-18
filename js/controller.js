@@ -40,6 +40,7 @@ class Controller {
     setUpGame = (event) => {
         this.isTwoPlayer = event.target === document.querySelector('#right-button');
         this.ui.reset();
+        this.ui.handleSwitchMarker(this.grid.activeMarker);
     }
 
     addButtonListeners() {

@@ -247,6 +247,8 @@
 
     .wrapper {margin-top: 2.6em;width: 85vw;}
 
+    .feedback {display: block;}
+
     .feedback_message {font-size: 2.2em;text-align: left;}
 
     .feedback_buttons-box {justify-content: flex-start;width: 100%;}
