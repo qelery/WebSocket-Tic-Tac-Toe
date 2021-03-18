@@ -15,7 +15,7 @@ class Controller {
         this.ui = new UserInterface();
         this.grid = new Grid();
         this.gameOver = false;
-        this.isTwoPlayer = false;
+        this.isTwoBrowser = false;
         this.addButtonListeners();
     }
 
@@ -38,7 +38,7 @@ class Controller {
     }
 
     setUpGame = (event) => {
-        this.isTwoPlayer = event.target === document.querySelector('#right-button');
+        this.isTwoBrowser = event.target === document.querySelector('#right-button');
         this.ui.reset();
         this.ui.handleSwitchMarker(this.grid.activeMarker);
     }

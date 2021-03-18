@@ -36,8 +36,8 @@ class Grid {
 
     checkRoundDone() {
         this.winningPositions = this.activeMarker === 'X'
-            ? this.xRecords.getWinningPositions()
-            : this.oRecords.getWinningPositions();
+                                    ? this.xRecords.getWinningPositions()
+                                        : this.oRecords.getWinningPositions();
 
         if (this.winningPositions) return true;
         if (this.totalPlacements === 9) return true;

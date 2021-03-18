@@ -68,7 +68,7 @@ class UserInterface {
             this.tieScore.innerText++;
         }
     }
-    s
+
     _clearSquares() {
         this.squareDivs.forEach(square => {
             square.classList.remove('red-marker', 'blue-marker', 'disabled');
