@@ -13,7 +13,6 @@
 
 class UserInterface {
     constructor() {
-        console.log('\n\n\nConstructing UserInterface...')
         this.gridDiv = null;
         this.squareDivs = null;
         this.statsDiv = null;
@@ -26,7 +25,7 @@ class UserInterface {
         this.init();
     }
 
-    markSquareDiv(square, marker) {
+    handleMarkedSquare(square, marker) {
         square.innerText = marker;
         square.setAttribute('data-clicked', 'true');
         square.classList.add(marker === 'X' ? 'red-marker' : 'blue-marker');
@@ -36,14 +35,8 @@ class UserInterface {
         this._alertMessage(`Waiting on Player ${marker}...`)
     }
 
-    reset() {
-        this._clearSquares();
-        this._unhideMessage();
-        this._hideButtons();
-        this._removeOpaqueStyles();
-    }
-
     async handleRoundDone(winningMarker, winningPositions) {
+        this._disableClicks();
         if (winningPositions) {
             this._alertMessage(`Player ${winningMarker} won!`);
             this._updateScore(winningMarker);
@@ -53,6 +46,13 @@ class UserInterface {
             this._updateScore('tie');
             await this._blinkPositions();
         }
+    }
+
+    reset() {
+        this._clearSquares();
+        this._unhideMessage();
+        this._hideButtons();
+        this._removeOpaqueStyles();
     }
 
     _alertMessage(message) {
@@ -68,13 +68,17 @@ class UserInterface {
             this.tieScore.innerText++;
         }
     }
-
+    s
     _clearSquares() {
         this.squareDivs.forEach(square => {
             square.classList.remove('red-marker', 'blue-marker', 'blink');
-            square.setAttribute('data-clicked', 'false');
+            square.dataset.clicked = 'false';
             square.innerText = '';
         })
+    }
+
+    _disableClicks() {
+        this.squareDivs.forEach(square => square.dataset.clicked = 'true');
     }
 
     _hideButtons() {

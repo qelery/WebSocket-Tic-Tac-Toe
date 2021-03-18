@@ -2,12 +2,17 @@
 
     Contains the Grid class and the RecordKeeper class.
 
+
+
+    > Grid class - validates and tracks marker placements per instructions from the controller
+
+    > RecordKeeper class - a helper class for Grid; allows for quick win checking
+
  */
 
 
 class Grid {
     constructor() {
-        console.log('\n\n\nConstructing Grid...')
         this.xRecords = new RecordKeeper();
         this.oRecords = new RecordKeeper();
         this.activeMarker = 'X';
@@ -16,12 +21,10 @@ class Grid {
     }
 
     switchMarker() {
-        console.log('In grid.switchMarker')
         this.activeMarker = this.activeMarker === 'X' ? 'O' : 'X';
     }
 
     placeMarker(square) {
-        console.log('In grid.placeMarker')
         if (square.dataset.clicked === 'true') return false;
 
         this.totalPlacements++;
@@ -33,10 +36,9 @@ class Grid {
     }
 
     checkRoundDone() {
-        console.log('In grid.checkRoundDone')
         this.winningPositions = this.activeMarker === 'X'
-            ? this.xRecords.checkForWin()
-            : this.oRecords.checkForWin();
+            ? this.xRecords.getWinningPositions()
+            : this.oRecords.getWinningPositions();
 
         if (this.winningPositions) return true;
         if (this.totalPlacements === 9) return true;
@@ -51,7 +53,6 @@ class Grid {
     }
 
     _updateRecords(x, y) {
-        console.log('In grid.updateRecords')
         if (this.activeMarker === 'X') {
             this.xRecords.update(x, y);
         } else {
@@ -83,7 +84,7 @@ class RecordKeeper {
         [this.lastX, this.lastY] = [xPosition, yPosition];
     }
 
-    checkForWin() {
+    getWinningPositions() {
 
         if (this.colCounts[this.lastX] === 3) {
             return [[this.lastX, 0], [this.lastX, 1], [this.lastX, 2]];

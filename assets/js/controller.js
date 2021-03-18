@@ -1,7 +1,17 @@
+/*
+
+    Contains the Controller class and creates and instance of it.
+
+
+
+    > Controller class - the main logic of the application; the link between the model and view
+
+ */
+
+
 
 class Controller {
     constructor() {
-        console.log('\n\n\nConstructing Controller...')
         this.ui = new UserInterface();
         this.grid = new Grid();
         this.gameOver = false;
@@ -10,13 +20,12 @@ class Controller {
     }
 
     mainLoop = async (event) => {
-        console.log('\n\n\nIn controller.mainLoop')
         if (this.gameOver) return;
 
-        let madePlacement = this.grid.placeMarker(event.target);
+        let markedSquare = this.grid.placeMarker(event.target);
 
-        if (madePlacement) {
-            this.ui.markSquareDiv(event.target, this.grid.activeMarker);
+        if (markedSquare) {
+            this.ui.handleMarkedSquare(event.target, this.grid.activeMarker);
 
             let roundDone = this.grid.checkRoundDone();
 
@@ -32,13 +41,11 @@ class Controller {
     }
 
     setUpGame = (event) => {
-        console.log('In controller.setUpGame')
         this.isTwoPlayer = event.target === document.querySelector('#right-button');
         this.ui.reset();
     }
 
     addButtonListeners() {
-        console.log('In controller.addButtonListeners')
         document.querySelector('#left-button').addEventListener('click', this.setUpGame);
         document.querySelector('#right-button').addEventListener('click', this.setUpGame);
 
