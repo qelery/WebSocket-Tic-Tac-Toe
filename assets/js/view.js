@@ -13,13 +13,13 @@
 
 class UserInterface {
     constructor() {
+        console.log('\n\n\nConstructing UserInterface...')
         this.gridDiv = null;
         this.squareDivs = null;
         this.statsDiv = null;
         this.xScore = null;
         this.oScore = null;
         this.tieScore = null;
-        this.feedbackDiv = null;
         this.message = null;
         this.leftButton = null;
         this.rightButton = null;
@@ -32,6 +32,10 @@ class UserInterface {
         square.classList.add(marker === 'X' ? 'red-marker' : 'blue-marker');
     }
 
+    handleSwitchMarker(marker) {
+        this._alertMessage(`Waiting on Player ${marker}...`)
+    }
+
     reset() {
         this._clearSquares();
         this._unhideMessage();
@@ -39,7 +43,7 @@ class UserInterface {
         this._removeOpaqueStyles();
     }
 
-    async handleRoundOver(winningMarker, winningPositions) {
+    async handleRoundDone(winningMarker, winningPositions) {
         if (winningPositions) {
             this._alertMessage(`Player ${winningMarker} won!`);
             this._updateScore(winningMarker);
@@ -105,7 +109,6 @@ class UserInterface {
         this.xScore = document.querySelector('#playerX .player__score');
         this.oScore = document.querySelector('#playerO .player__score');
         this.tieScore = document.querySelector('#tie .player__score');
-        this.feedbackDiv = document.querySelector('.feedback');
         this.message = document.querySelector('.feedback_message');
         this.leftButton = document.querySelector('#left-button');
         this.rightButton = document.querySelector('#right-button');

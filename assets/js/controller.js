@@ -1,52 +1,51 @@
 
 class Controller {
     constructor() {
+        console.log('\n\n\nConstructing Controller...')
         this.ui = new UserInterface();
         this.grid = new Grid();
         this.gameOver = false;
         this.isTwoPlayer = false;
-        this.setUpButtons();
+        this.addButtonListeners();
     }
 
-    setUpButtons() {
-        document.querySelector('#left-button').addEventListener('click', this._setUpGame);
-        document.querySelector('#right-button').addEventListener('click', this._setUpGame);
-
-        const squareButtons = Array.from(document.querySelector('.grid').children);
-        squareButtons.forEach(sqrBtn => sqrBtn.addEventListener('click', this._mainLoop));
-    }
-
-    _setUpGame = (event) => {
-        console.log("In _setUpGame");
-        this.isTwoPlayer = event.target === document.querySelector('#right-button');
-
-        this.ui.reset();
-    }
-
-    _mainLoop = async (event) => {
-        console.log("\nIn _mainLoop")
-
+    mainLoop = async (event) => {
+        console.log('\n\n\nIn controller.mainLoop')
         if (this.gameOver) return;
 
-        let wasPlaced = this.grid.placeMarker(event.target);
+        let madePlacement = this.grid.placeMarker(event.target);
 
-        if (wasPlaced) {
-            let marker = this.grid.activeMarker;
-            this.ui.markSquareDiv(event.target, marker);
+        if (madePlacement) {
+            this.ui.markSquareDiv(event.target, this.grid.activeMarker);
 
-            let [roundDone, winningPositions] = this.grid.checkRoundDone();
+            let roundDone = this.grid.checkRoundDone();
 
             if (roundDone) {
-                await this.ui.handleRoundOver(marker, winningPositions);
+                await this.ui.handleRoundDone(this.grid.activeMarker, this.grid.winningPositions);
                 this.grid.reset();
                 this.ui.reset();
             }
+
             this.grid.switchMarker();
+            this.ui.handleSwitchMarker(this.grid.activeMarker);
         }
+    }
+
+    setUpGame = (event) => {
+        console.log('In controller.setUpGame')
+        this.isTwoPlayer = event.target === document.querySelector('#right-button');
+        this.ui.reset();
+    }
+
+    addButtonListeners() {
+        console.log('In controller.addButtonListeners')
+        document.querySelector('#left-button').addEventListener('click', this.setUpGame);
+        document.querySelector('#right-button').addEventListener('click', this.setUpGame);
+
+        const squareButtons = Array.from(document.querySelector('.grid').children);
+        squareButtons.forEach(sqrBtn => sqrBtn.addEventListener('click', this.mainLoop));
     }
 }
 
-
-console.clear();
 
 const controller = new Controller();
