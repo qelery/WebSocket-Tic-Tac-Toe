@@ -163,7 +163,7 @@ class SocketController extends WebSocket {
     }
 }
 
-const url = 'wss://qelery.herokuapp.com/websocket';
+const url = 'ws://localhost:3000/websocket';
 const socketController = new SocketController(url);
 const gameController = new GameController();
 

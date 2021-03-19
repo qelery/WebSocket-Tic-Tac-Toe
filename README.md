@@ -3,7 +3,7 @@ WebSocket Tic-Tac-Toe
 
 ### Live Demo
 
-[qelery.herokuapp.com](qelery.herokuapp.com)
+[qelery.herokuapp.com](http://qelery.herokuapp.com/)
 
 ## Usage
 
@@ -21,9 +21,9 @@ node app.js
 
 ## Features
 
-* WebSocket Two Player - play from different devices or browsers
-* Responsive Design - resizes and rearranges layout on smaller devices
-* Animations - blink, shake, and fall animations
+* **WebSocket Two Player** - play from different devices or browsers
+* **Responsive Design** - resizes and rearranges layout on smaller devices
+* **Animations** - blink, shake, and fall animations
 
 
 ## Layouts
