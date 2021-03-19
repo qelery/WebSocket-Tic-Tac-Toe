@@ -3,12 +3,24 @@
     src: url("../fonts/KGBrokenVesselsSketch.ttf");
 }
 
+@font-face {
+    font-family: "Play";
+    src: url("../fonts/Play-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Play";
+    src: url("../fonts/Play-Bold.ttf");
+    font-weight: bold;
+}
+
 body {
     margin: 0;
     padding: 0;
     color: #fff;
     background: #000;
     overflow-y: hidden;
+    font-family: 'Play', sans-serif;
 }
 
 .wrapper {
@@ -38,6 +50,7 @@ body {
     font-size: 1.8em;
     width: 225px;
     height: 60px;
+    font-family: 'Play', sans-serif;
 }
 
 .feedback_button:hover {
