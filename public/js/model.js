@@ -1,17 +1,8 @@
-/*
-
-    Contains the Grid class and the RecordKeeper class.
-
-
-
-    > Grid class - validates and tracks marker placements per instructions from the controller
-
-    > RecordKeeper class - a helper class for Grid; allows for quick win checking
-
- */
-
 
 class Grid {
+    /**
+     * The Grid manages marker placements per the GameController's instructions.
+     */
     constructor() {
         this.xRecords = new RecordKeeper();
         this.oRecords = new RecordKeeper();
@@ -65,6 +56,13 @@ class Grid {
 
 class RecordKeeper {
 
+    /**
+     * The RecordKeeper is a helper class for the Grid.
+     *
+     * Records the number of times a particular marker appears in each
+     * row/col/diagonal. Allows for fast win checking. Both players
+     * should each have their own instance of RecordKeeper.
+     */
     constructor() {
         this.rowCounts = [0 , 0, 0];
         this.colCounts = [0, 0, 0];

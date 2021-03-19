@@ -1,14 +1,11 @@
-/*
-
-    Contains the Controller class and creates and instance of it.
-
-
-
-    > Controller class - the main logic of the application; the link between the model and view
-
- */
 
 class GameController {
+    /**
+     * The GameController handles the main logic of the application.
+     *
+     * Serves as the link between the SocketController, View, and Model;
+     * all of which don't communicate directly with one other.
+     */
     constructor() {
         this.ui = new UserInterface();
         this.grid = new Grid();
@@ -122,7 +119,16 @@ class GameController {
     }
 }
 
+
+
 class SocketController extends WebSocket {
+    /**
+     * The SocketController is the link between the server and client.
+     *
+     * Communicates between the client and the server. If the game is played on
+     * two different devices/browsers, the server is the intermediary between the
+     * two clients; the SocketController is the messenger relaying the server's actions.
+     */
     constructor() {
         super(url);
         this.onmessage = this.listen;
@@ -138,7 +144,7 @@ class SocketController extends WebSocket {
 
         switch(event) {
 
-            case 'TakeInviteLink':
+            case 'ReceiveInviteLink':
                 gameController.setInviteLink(reply.inviteUrl);
                 break;
 
@@ -154,13 +160,11 @@ class SocketController extends WebSocket {
             case 'OpponentLeft':
                 gameController.opponentDisconnect();
                 break;
-
        }
     }
-
 }
 
-const url = 'ws://localhost:9876/websocket';
+const url = 'ws://localhost:3000/websocket';
 const socketController = new SocketController(url);
 const gameController = new GameController();
 

@@ -1,17 +1,8 @@
-/*
-
-    Contains the UserInterface class plus Helper Functions.
-
-
-
-    > UserInterface class - manipulates the DOM per instructions from the controller
-
-    > Help functions - for various animations
-
- */
-
 
 class UserInterface {
+    /**
+     * The UserInterface manipulates the DOM per the GameController's instructions.
+     */
     constructor() {
         this.gridDiv = null;
         this.squareDivs = null;
@@ -124,6 +115,9 @@ class UserInterface {
     }
 }
 
+
+
+// Helper functions
 async function blinkAnimation(positions) {
     let squaresToBlink;
     if (positions) {
