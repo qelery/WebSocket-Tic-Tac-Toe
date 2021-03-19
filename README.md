@@ -16,21 +16,25 @@ npm install
 ### Start App
 
 ```sh
-node app.js
+npm start
 ```
 
 ## Features
 
-* **WebSocket Two Player** - play from different devices or browsers
-* **Responsive Design** - resizes and rearranges layout on smaller devices
+* **WebSocket Two Player** - challenege your friends from different devices with an invite link
+* **Responsive Design** - resizable layout to fit on smaller screens
 * **Animations** - blink, shake, and fall animations
 
 
 ## Layouts
 
 ### Desktop
-![desktop view](public/images/readme-images/desktop-layout1.png)
+![desktop view](public/images/desktop-layout.png)
+![desktop view](public/images/websocket-invite.png)
+![desktop view](public/images/websocket-disconnect.png)
+![desktop view](public/images/turn-update.png)
 
 ### Mobile and Tablet
-![mobile view portrait](public/images/readme-images/mobile-layout1-portrait1.png)
-![mobile view landscape](public/images/readme-images/mobile-layout1-landscape1.png)
+![mobile view portrait](public/images/mobile-layout1-portrait.png)
+![mobile view landscape](public/images/mobile-layout1-landscape.png)
+![small tablet view landscape](public/images/tablet-view.png)
