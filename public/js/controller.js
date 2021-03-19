@@ -14,7 +14,7 @@ class GameController {
         this.init();
     }
 
-    singleBrowserMainLoop = async (event) => {
+    async singleBrowserMainLoop(event) {
         if (this.gameOver) return;
 
         this.grid.placeMarker(event.target);
@@ -32,8 +32,8 @@ class GameController {
         this.ui.handleSwitchMarker(this.grid.activeMarker);
     }
 
-    twoBrowserMainLoop = async (event) => {
- 
+    async twoBrowserMainLoop(event) {
+
         if (this.gameOver || this.grid.activeMarker !== this.myMarker) {
             return;
         }
@@ -59,17 +59,17 @@ class GameController {
     }
 
 
-    setUpOneBrowserGame = () => {
+    setUpOneBrowserGame() {
         this.myMarker = 'X';
         const squareButtons = Array.from(document.querySelector('.grid').childNodes);
-        squareButtons.forEach(sqBtn => sqBtn.addEventListener('click', this.singleBrowserMainLoop));
+        squareButtons.forEach(sqBtn => sqBtn.addEventListener('click', (event) => this.singleBrowserMainLoop(event)));
         this.ui.reset();
         this.ui.handleSwitchMarker(this.grid.activeMarker);
     }
 
-    setUpTwoBrowserGame = () => {
+    setUpTwoBrowserGame() {
         const squareButtons = Array.from(document.querySelector('.grid').childNodes);
-        squareButtons.forEach(sqBtn => sqBtn.addEventListener('click', this.twoBrowserMainLoop));
+        squareButtons.forEach(sqBtn => sqBtn.addEventListener('click', (event) => this.twoBrowserMainLoop(event)));
         this.ui.reset();
         this.ui.handleSwitchMarker(this.grid.activeMarker);
     }
@@ -91,9 +91,8 @@ class GameController {
         this.ui.handleSwitchMarker(this.grid.activeMarker);
     }
 
-    connectPlayerTwo = () => {
-        const regex = /(?<=invite\/).+/g;
-        const inviteID = window.location.href.toLowerCase().match(regex)[0].replace("/", "");
+    connectPlayerTwo() {
+        const inviteID = window.location.href.toLowerCase().split("invite/")[1].replace("/", "");
         this.ui.reset();
         this.ui.handleSwitchMarker(this.grid.activeMarker);
 
@@ -110,12 +109,12 @@ class GameController {
 
     init() {
         if (!socketController.isGameHost) {
-            socketController.onopen = this.connectPlayerTwo;
+            socketController.onopen = () => {
+                this.connectPlayerTwo();
+            }
         }
-        document.querySelector('#one-browser-button').addEventListener('click', this.setUpOneBrowserGame);
-        document.querySelector('#two-browser-button').addEventListener('click', () => {
-            socketController.emit('GiveMeInviteLink');
-        });
+        document.querySelector('#one-browser-button').addEventListener('click', () => this.setUpOneBrowserGame());
+        document.querySelector('#two-browser-button').addEventListener('click', () => socketController.emit('GiveMeInviteLink'));
     }
 }
 
@@ -160,11 +159,11 @@ class SocketController extends WebSocket {
             case 'OpponentLeft':
                 gameController.opponentDisconnect();
                 break;
-       }
+        }
     }
 }
 
-const url = 'ws://localhost:3000/websocket';
+const url = 'wss://qelery.herokuapp.com/websocket';
 const socketController = new SocketController(url);
 const gameController = new GameController();
 
