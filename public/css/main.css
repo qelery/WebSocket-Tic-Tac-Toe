@@ -107,6 +107,14 @@ body {
     font-size: 2.8em;
 }
 
+.small-text {
+    font-size: 2.5rem;
+}
+
+.smaller-text {
+    font-size: 2.4rem;
+}
+
 .hidden {
     display: none;
 }

@@ -29,13 +29,13 @@ wss.on('connection', (client, req) => {
     client.on('message', (signal) => {
   
         const {event, data} = JSON.parse(signal);
+
         console.log("Event:", event);
         switch (event) {
 
             case 'GiveMeInviteLink':
-                console.log("Response: sending invite link");
                 const [inviteUrl, inviteID] = generateInviteLink();
-                client.send(respond('TakeInviteLink', {inviteUrl}));   
+                client.send(formatResponse('TakeInviteLink', {inviteUrl}));   
                 client.inviteID = inviteID;
                 break;
 
@@ -49,19 +49,15 @@ wss.on('connection', (client, req) => {
                     guest.opponent = host;
                     guest.name = 'Player O';
 
-                    host.send(respond('StartGame', {marker: 'X'}));
-                    guest.send(respond('StartGame', {marker: 'O'}));
-
-                    console.log(host.name, client.name)
+                    host.send(formatResponse('StartGame', {marker: 'X'}));
+                    guest.send(formatResponse('StartGame', {marker: 'O'}));
                 } else {
                     console.log("couldn't find match")
                 }
                 break;
 
             case 'TransmitButtonPress':
-                console.log(data)
-                console.log("Data was", data)
-                client.opponent.send(respond('ButtonPressed', data.btnCoords));
+                client.opponent.send(formatResponse('ButtonPressed', data.squareCoords));
                 break;
 
 
@@ -69,6 +65,14 @@ wss.on('connection', (client, req) => {
 
     });
 
+    client.on('close', () => {
+        
+        if (client.opponent) {
+            client.opponent.send(formatResponse('OpponentLeft'));
+        }
+
+        console.log("Disconnected....")
+    })
 
 })
 
@@ -87,7 +91,7 @@ function generateInviteLink() {
     return Math.floor(Math.random() * max)
  }
 
- function respond(event, reply) {
+ function formatResponse(event, reply) {
     return JSON.stringify({event, reply});
  }
 

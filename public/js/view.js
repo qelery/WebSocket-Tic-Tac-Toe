@@ -50,7 +50,20 @@ class UserInterface {
 
     alertInviteLink(url) {
         this.reset();
-        this.message.innerHTML = `Invite link:<br><span style="font-size: 50%">${url}<span>`;
+        this.message.innerText = 'Invite link';
+        const br = document.createElement('br');
+        const span = document.createElement('span');
+        span.innerText = url;
+        span.classList.add('small-text');
+        this.message.append(br, span);
+    }
+
+    alertOpponentDisconnect() {
+        const span = document.createElement('span');
+        span.innerHTML = 'Opponent disconnected.<br>Refresh to start new game';
+        span.classList.add('smaller-text');
+        this.message.innerHTML = '';
+        this.message.append(span);
     }
 
     reset() {

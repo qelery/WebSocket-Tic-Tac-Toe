@@ -14,9 +14,7 @@ class GameController {
         this.grid = new Grid();
         this.gameOver = false;
         this.myMarker = null;
-        console.log(document.querySelector(`[data-x="1"][data-y="1"]`))
         this.init();
-
     }
 
     singleBrowserMainLoop = async (event) => {
@@ -38,18 +36,18 @@ class GameController {
     }
 
     twoBrowserMainLoop = async (event) => {
-        console.log("Button clicked", this.grid.activeMarker, this.gameOver, this.myMarker)
+ 
         if (this.gameOver || this.grid.activeMarker !== this.myMarker) {
             return;
         }
 
-        const pressedButton = event.target;
-        this.grid.placeMarker(pressedButton);
-        const xCoord = pressedButton.dataset.x;
-        const yCoord = pressedButton.dataset.y;
-        const btnCoords = {xCoord, yCoord}
-        socketController.emit('TransmitButtonPress', {btnCoords});
-        this.ui.handleMarkedSquare(pressedButton, this.grid.activeMarker);
+        const pressedSquare = event.target;
+        this.grid.placeMarker(pressedSquare);
+        const x = pressedSquare.dataset.x;
+        const y = pressedSquare.dataset.y;
+        const squareCoords = {x, y}
+        socketController.emit('TransmitButtonPress', {squareCoords});
+        this.ui.handleMarkedSquare(pressedSquare, this.grid.activeMarker);
 
         let roundDone = this.grid.checkRoundDone();
 
@@ -79,14 +77,8 @@ class GameController {
         this.ui.handleSwitchMarker(this.grid.activeMarker);
     }
 
-    async placeOpponentsMarker(btnCoords) {
-        const x = btnCoords.xCoord;
-        console.log(x)
-        const y = btnCoords.yCoord;
-        console.log(y)
-        console.log(document.querySelector(`[data-x="${x}"][data-y="${y}"]`))
-        const pressedButton = document.querySelector(`[data-x="${x}"][data-y="${y}"]`);
-        console.log(pressedButton)
+    async placeOpponentsMarker(coords) {
+        const pressedButton = document.querySelector(`[data-x="${coords.x}"][data-y="${coords.y}"]`);
         this.grid.placeMarker(pressedButton);
         this.ui.handleMarkedSquare(pressedButton, this.grid.activeMarker);
 
@@ -102,33 +94,29 @@ class GameController {
         this.ui.handleSwitchMarker(this.grid.activeMarker);
     }
 
-    setInviteLink(url) {
-        this.ui.alertInviteLink(url);
-        console.log("Set invite link")
-        // const regex = /(?<=\/invite\/).+(?=[\/?])/g;
-    }
-
     connectPlayerTwo = () => {
-        const regex = /(?<=\/invite\/).+/g;
-        const inviteID = window.location.href.toLowerCase().match(regex)[0];
-        console.log(inviteID)
+        const regex = /(?<=invite\/).+/g;
+        const inviteID = window.location.href.toLowerCase().match(regex)[0].replace("/", "");
         this.ui.reset();
         this.ui.handleSwitchMarker(this.grid.activeMarker);
 
         socketController.emit('MatchMeToHost', {inviteID});
-        
-        // squareButtons.forEach(sqBtn => sqBtn.addEventListener('click', this.twoBrowserMainLoop));
     }
 
+    setInviteLink(url) {
+        this.ui.alertInviteLink(url);
+    }
+
+    opponentDisconnect() {
+        this.ui.alertOpponentDisconnect();
+    }
 
     init() {
         if (!socketController.isGameHost) {
-            console.log("HEEE")
             socketController.onopen = this.connectPlayerTwo;
         }
         document.querySelector('#one-browser-button').addEventListener('click', this.setUpOneBrowserGame);
         document.querySelector('#two-browser-button').addEventListener('click', () => {
-            console.log("HERE")
             socketController.emit('GiveMeInviteLink');
         });
     }
@@ -142,7 +130,6 @@ class SocketController extends WebSocket {
     }
 
     emit(event, data) {
-        console.log('SENDING')
         this.send(JSON.stringify({event, data}))
     }
 
@@ -152,7 +139,6 @@ class SocketController extends WebSocket {
         switch(event) {
 
             case 'TakeInviteLink':
-                console.log("Received invite link")
                 gameController.setInviteLink(reply.inviteUrl);
                 break;
 
@@ -162,54 +148,17 @@ class SocketController extends WebSocket {
                 break;
 
             case 'ButtonPressed':
-                console.log(document.querySelector(`[data-x="1"][data-y="1"]`))
-                console.log(reply)
                 gameController.placeOpponentsMarker(reply);
+                break;
+
+            case 'OpponentLeft':
+                gameController.opponentDisconnect();
+                break;
 
        }
     }
 
 }
-
-
-
-// class SocketdController {
-//     constructor(url) {
-//         this.url = 'ws://localhost:9876/websocket/';
-//         this.server = new WebSocket(url);
-//         this.isGameHost = this._checkIfHost();
-//         this.server.onmessage = this.handleIncomingMessage;
-//         this.isGameHost();
-
-//     }
-
-//     requestInviteLink() {
-//         this.emit('GiveInviteLink');
-//     }
-
-//     checkIfHost() {
-//         this.isGameHost = window.location.href.includes('invite') ? false : true;
-//         gameController.connectPlayerTwo();
-//     }
-
-//     handleIncomingMessage(message) {
-//         const {event, reply} = JSON.parse(message.data);
-        
-//         switch(event) {
-
-//              case 'TakeInviteLink':
-//                 console.log("taking invite link")
-//                  gameController.setInviteLink(reply.inviteUrl);
-
-
-//         }
-//     }
-
-//     emit(event, data) {
-//         console.log('emitting request')
-//         this.server.send(JSON.stringify({event, data}))
-//     }
-// }
 
 const url = 'ws://localhost:9876/websocket';
 const socketController = new SocketController(url);
