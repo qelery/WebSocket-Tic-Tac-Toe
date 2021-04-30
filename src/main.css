@@ -1,0 +1,141 @@
+@font-face {
+    font-family: "Vessel Sketch";
+    src: url("./fonts/KGBrokenVesselsSketch.ttf");
+}
+
+@font-face {
+    font-family: "Play";
+    src: url("./fonts/Play-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Play";
+    src: url("./fonts/Play-Bold.ttf");
+    font-weight: bold;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    background: #000;
+    overflow-y: hidden;
+    font-family: 'Play', sans-serif;
+}
+
+.wrapper {
+    margin: 4em auto;
+    width: 600px;
+}
+
+.feedback {
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    text-align: center;
+}
+
+.feedback_message {
+    margin: 0;
+    font-size: 2.6em;
+}
+
+.feedback_buttons-box {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.feedback_button {
+    font-size: 1.8em;
+    width: 225px;
+    height: 60px;
+    font-family: 'Play', sans-serif;
+}
+
+.feedback_button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2em auto 2em;
+    height: 600px;
+    width: 600px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.square {
+    height: 200px;
+    width: 200px;
+    cursor: pointer;
+    font-size: 10em;
+    box-sizing: border-box;
+    font-family: "Vessel Sketch", cursive, serif;
+}
+
+.bottom-border {
+    border-bottom: 4px solid #dbdbdb;
+}
+
+.right-border {
+    border-right: 4px solid #dbdbdb;
+}
+
+.square span {
+    display: inline-block;
+}
+
+/* red for O */
+.red-marker {
+    color: #ff8987;
+}
+
+/* blue for X */
+.blue-marker {
+    color: #b2dcff;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2.4em;
+}
+
+.player {
+    text-align: center;
+}
+
+.player__name {
+    margin:0.8em 0 0.4em;
+    font-size: 2.2em;
+}
+
+.player__score {
+    padding: 0;
+    margin: 0;
+    font-size: 2.8em;
+}
+
+.small-text {
+    font-size: 2.5rem;
+}
+
+.smaller-text {
+    font-size: 2.4rem;
+}
+
+.hidden {
+    display: none;
+}
+
+.opaque {
+    opacity: 0.4;
+}
+
+.disabled {
+    pointer-events: none;
+}

@@ -1,11 +1,24 @@
+import { useState } from 'react';
+import Banner from "./components/Banner";
+import Grid from "./components/Grid";
+import ScoreBoard from "./components/ScoreBoard";
 
-import * as React from "react";
-
+import RecordKeeper from "./model/RecordKeeper";
 
 const App = () => {
 
+    const [xRecords, setXRecords] = useState(new RecordKeeper());
+    const [oRecords, setORecords] = useState(new RecordKeeper());
+    const [activeMarker, setActiveMarker] = useState('X');
+    const [totalPlacements, setTotalPlacements] = useState(0);
+
+
     return (
-        <h1>Hello World</h1>
+        <div className="wrapper">
+            <Banner />
+            <Grid />
+            <ScoreBoard />
+        </div>
     )
 }
 
