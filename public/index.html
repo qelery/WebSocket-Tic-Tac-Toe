@@ -1,54 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Tic Tac Toe</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
-    <link rel="stylesheet" href="/css/animations.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/mobile-tablet-small.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-    <link rel="manifest" href="/images/site.webmanifest">
-</head>
-<body>
-    <div class="wrapper">
-        <div class="feedback">
-            <p class="feedback_message hidden"></p>
-            <div class="feedback_buttons-box">
-                <button id="one-browser-button" class="feedback_button">One Browser</button>
-                <button id="two-browser-button" class="feedback_button">Two Browser</button>
-            </div>
-        </div>
-        <div class="grid opaque">
-            <div class="square disabled blue-marker" data-x="0" data-y="0"><span>O</span></div>
-            <div class="square disabled blue-marker" data-x="1" data-y="0"><span >O</span></div>
-            <div class="square disabled red-marker" data-x="2" data-y="0"><span>X</span></div>
-            <div class="square disabled red-marker" data-x="0" data-y="1"><span>X</span></div>
-            <div class="square disabled blue-marker" data-x="1" data-y="1"><span>O</span></div>
-            <div class="square disabled red-marker" data-x="2" data-y="1"><span>X</span></div>
-            <div class="square disabled red-marker" data-x="0" data-y="2"><span>X</span></div>
-            <div class="square disabled blue-marker" data-x="1" data-y="2"><span>O</span></div>
-            <div class="square disabled blue-marker" data-x="2" data-y="2"><span>O</span></div>
-        </div>
-        <div class="stats opaque">
-            <div id="playerX" class="player">
-                <p class="player__name">Player X</p>
-                <p class="player__score">0</p>
-            </div>
-            <div id="tie" class="player">
-                <p class="player__name">Tie</p>
-                <p class="player__score">0</p>
-            </div>
-            <div id="playerO" class="player">
-                <p class="player__name">Player O</p>
-                <p class="player__score">0</p>
-            </div>
-        </div>
-    </div>
-    <script src="/js/model.js"></script>
-    <script src="/js/view.js"></script>
-    <script src="/js/controller.js"></script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Tic-Tac-Toe app created using React"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>Tic-Tac-Toe</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
 </html>
